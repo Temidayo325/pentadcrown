@@ -1,0 +1,108 @@
+.custom-shape-divider-bottom-1640268057 svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+.custom-shape-divider-bottom-1640270602 svg{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+.custom-shape-divider-bottom-1640392321
+ {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1640392321 svg
+{
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 197px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-bottom-1640392321 .shape-fill
+{
+    fill: #FFFFFF;
+}
+.custom-shape-divider-top-1640392612
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1640392612 svg
+{
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 197px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-top-1640392612 .shape-fill
+{
+    fill: #FFFFFF;
+}
+.custom-shape-divider-top-1640393135 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1640393135 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 197px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-top-1640393135 .shape-fill {
+    fill: #FFFFFF;
+}
+.custom-shape-divider-bottom-1640393630 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1640393630 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 197px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-bottom-1640393630 .shape-fill {
+    fill: #FFFFFF;
+}
+.textarea{
+   border: none;
+   height: 100px;
+}

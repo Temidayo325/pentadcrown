@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-
+use Nicolaslopezj\Searchable\SearchableTrait;
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -17,7 +17,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
-
+    use SearchableTrait;
     /**
      * The attributes that are mass assignable.
      *
@@ -27,6 +27,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'cvpath',
+        'coverletterpath',
+        'jobs'
     ];
 
     /**
@@ -58,4 +61,27 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    protected $searchable = [
+        /**
+         * Columns and their priority in search results.
+         * Columns with higher values are more important.
+         * Columns with equal values have equal importance.
+         *
+         * @var array
+         */
+        'columns' => [
+            'users.name' => 6,
+            'users.email' => 4,
+            'users.jobs' => 10
+        ]
+        // ,
+        // 'joins' => [
+        //     'posts' => ['users.id','posts.user_id'],
+        // ],
+    ];
+    public function shortlisteds()
+     {
+        return $this->belongsTo(Shortlisted::class, 'email', 'email');
+    }
 }

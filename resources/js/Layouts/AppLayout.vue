@@ -13,7 +13,8 @@
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
                                 <Link :href="route('dashboard')">
-                                    <jet-application-mark class="block h-9 w-auto" />
+                                    <!-- <jet-application-mark class="block h-9 w-auto" /> -->
+                                    <h1 class="text-left font-bold leading-9 text-xl">{{ $page.props.user.name }}</h1>
                                 </Link>
                             </div>
 
@@ -164,7 +165,15 @@
                             <jet-responsive-nav-link :href="route('profile.show')" :active="route().current('profile.show')">
                                 Profile
                             </jet-responsive-nav-link>
-
+                            <jet-responsive-nav-link href="/upload" :active="route().current('component.upload')">
+                                Upload documents
+                            </jet-responsive-nav-link>
+                            <jet-responsive-nav-link :href="route('aptitude')" :active="route().current('component.aptitude')">
+                                Aptitude test
+                            </jet-responsive-nav-link>
+                            <jet-responsive-nav-link :href="route('jobcategory')" :active="route().current('component.jobcategory')">
+                                Add job Category
+                            </jet-responsive-nav-link>
                             <jet-responsive-nav-link :href="route('api-tokens.index')" :active="route().current('api-tokens.index')" v-if="$page.props.jetstream.hasApiFeatures">
                                 API Tokens
                             </jet-responsive-nav-link>
@@ -244,6 +253,7 @@
     export default defineComponent({
         props: {
             title: String,
+            user: Object
         },
 
         components: {
