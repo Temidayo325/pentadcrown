@@ -1,5 +1,6 @@
 <template>
    <app-layout title="Add Job Category">
+      <Head title="Welcome to your dashboard" />
       <template #header>
           <h2 class="font-semibold text-xl text-gray-800 leading-tight">
              Job categories
@@ -28,10 +29,13 @@
 <script>
    import { defineComponent } from 'vue'
    import AppLayout from '@/Layouts/AppLayout.vue'
+   import { Head, Link } from '@inertiajs/inertia-vue3'
 
    export default defineComponent({
       components: {
-         AppLayout
+         AppLayout,
+         Head,
+         Link,
       },
       props: {
          user: Object

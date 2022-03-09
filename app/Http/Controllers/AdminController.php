@@ -8,6 +8,7 @@ use App\Models\Title;
 use App\Models\User;
 use App\Models\Shortlisted;
 
+use App\Services\Validate;
 use Illuminate\Support\Facades\Hash;
 // use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -43,21 +44,21 @@ class AdminController extends Controller
     public function Search(Request $request)
     {
       if ($request->session()->has('admin')) {
-            $validator = Validator::make($request->all(), [
-               'search' => 'required|min:3|string'
-            ]);
 
-            if ($validator->fails()) {
-               return  [
-                  'status' => 0,
-                  'message' => $validator->errors()->first()
-               ];
+            if ($request->search !== '' || $request->search !== undefined || $request->search !== null) {
+               // code...
+               $request->session()->put('search', Validate::alphabet($request->search));
+               return response()->json([
+                  'status' => 1,
+                  'message' => User::doesntHave('shortlisteds')->search($request->search)->paginate(10)
+               ]);
+            }else{
+               return response()->json([
+                  'status' => 1,
+                  'message' => User::doesntHave('shortlisteds')->search($request->session()->get('search'))->paginate(15)
+               ]);
             }
-            // $request->session()->put('search','search');
-            return response()->json([
-               'status' => 1,
-               'message' => User::doesntHave('shortlisteds')->search($request->search)->paginate(15)
-            ]);
+
       }else{
          return Redirect::route('admin');
       }

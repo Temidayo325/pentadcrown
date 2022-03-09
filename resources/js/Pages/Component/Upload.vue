@@ -1,13 +1,9 @@
 <template>
     <app-layout title="Upload">
-        <!-- <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Upload
-            </h2>
-        </template> -->
         <div class="mx-auto my-6">
            <h2 class="text-xl tracking-wider font-bold text-black text-center">Upload files</h2>
            <h3 class="text-md py-2 text-slate-700 text-center">Upload the required here</h3>
+           <h3 class="text-sm text-red-500 text-center py-2" v-if="user.cvpath == null">You do not have an uploaded CV. Upload one using the form below</h3>
         </div>
         <div class="my-3 px-3 border-4 border-slate-400 border-dashed bg-slate-300 py-3 px-3 mx-4">
            <form action="" method="post" enctype="multipart/form-data" class="grid justify-center">

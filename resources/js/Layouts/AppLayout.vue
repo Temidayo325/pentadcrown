@@ -4,8 +4,8 @@
 
         <jet-banner />
 
-        <div class="min-h-screen bg-gray-100">
-            <nav class="bg-white border-b border-gray-100">
+        <div class="min-h-screen bg-gray-100 md:bg-transparent">
+            <nav class="bg-white border-b border-gray-100 md:hidden">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
@@ -161,17 +161,17 @@
                             </div>
                         </div>
 
-                        <div class="mt-3 space-y-1">
+                        <div class="mt-3 space-y-1 md:w-3/12">
                             <jet-responsive-nav-link :href="route('profile.show')" :active="route().current('profile.show')">
                                 Profile
                             </jet-responsive-nav-link>
-                            <jet-responsive-nav-link href="/upload" :active="route().current('component.upload')">
+                            <jet-responsive-nav-link href="upload" :active="route().current('component.upload')">
                                 Upload documents
                             </jet-responsive-nav-link>
                             <jet-responsive-nav-link :href="route('aptitude')" :active="route().current('component.aptitude')">
                                 Aptitude test
                             </jet-responsive-nav-link>
-                            <jet-responsive-nav-link :href="route('jobcategory')" :active="route().current('component.jobcategory')">
+                            <jet-responsive-nav-link :href="route('jobcategory')" :active="route().current('component.job')">
                                 Add job Category
                             </jet-responsive-nav-link>
                             <jet-responsive-nav-link :href="route('api-tokens.index')" :active="route().current('api-tokens.index')" v-if="$page.props.jetstream.hasApiFeatures">
@@ -233,8 +233,8 @@
             </header>
 
             <!-- Page Content -->
-            <main>
-                <slot></slot>
+            <main >
+                <slot user="userInfo"></slot>
             </main>
         </div>
     </div>
@@ -253,7 +253,7 @@
     export default defineComponent({
         props: {
             title: String,
-            user: Object
+            userInfo: Object
         },
 
         components: {

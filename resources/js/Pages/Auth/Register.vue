@@ -1,6 +1,6 @@
 <template>
     <Head title="Register" />
-    <div :class="entry" v-if="navigation">
+    <div :class="entry" class="md:hidden" v-if="navigation">
         <div class="h-full w-96 backdrop-blur-sm bg-slate/30 bg-slate-200 drop-shadow-xl">
           <div class="flex end py-4 px-3" v-on:click="closeNanigation()">
              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 drop-shadow-lg" viewBox="0 0 20 20" fill="currentColor">
@@ -67,7 +67,7 @@
            </nav>
         </div>
     </div>
-      <div class="sticky top-0 z-10">
+      <div class="sticky top-0 z-10 md:hidden">
           <div class="flex justify-between py-3 bg-slate-50 align-items-center px-4">
              <div class="">
                   <h1 class="font-black tracking-normal">PENTADCROWN</h1>
@@ -79,21 +79,14 @@
              </div>
           </div>
       </div>
-      <div class="bg-register bg-cover bg-no-repeat w-full h-48 bg-blend-multiply bg-zinc-600 flex justify-center items-center">
-         <!-- <div class="bg-zinc-900 w-full h-full opacity-40 flex justify-center items-center"> -->
-            <h1 class="font-bold text-center leading-9 tracking-wider text-xl text-white italic">Become a Pentadcrowner</h1>
-         <!-- </div> -->
-      </div>
-    <jet-authentication-card>
-        <!-- <template #logo>
-            <jet-authentication-card-logo />
-        </template> -->
+
+    <jet-authentication-card class="bg-register bg-cover bg-no-repeat w-full h-48 bg-blend-multiply bg-zinc-600">
 
         <jet-validation-errors class="mb-4" />
 
-        <form @submit.prevent="submit" class="px-3 border-2 border-slate-300 py-5 shadow-md">
+        <form @submit.prevent="submit" class="px-3 border-2 border-slate-300 py-5 shadow-md md:border-0 bg-slate-100">
            <div class="mb-3">
-              <h1 class="font-bold text-center leading-9 tracking-wider text-xl">Create your account</h1>
+              <h1 class="font-bold text-center leading-9 tracking-wider text-xl text-purple-800">Create your account</h1>
            </div>
             <div>
                 <jet-label for="name" value="Name" />
@@ -132,51 +125,55 @@
                     Already registered?
                 </Link>
 
-                <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <jet-button class="ml-4 bg-purple-800" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Register
                 </jet-button>
             </div>
         </form>
     </jet-authentication-card>
-    <div class="">
-      <div class="bg-black px-2 py-2 border-t-2 border-red-600">
-          <p class="text-center py-2 leading-9 tracking-wider text-md text-slate-100 mb-6">&copy;Copyright of PentadCrown 2022</p>
-          <div class="px-6 bg-black">
-             <img :src="googleMap" alt="" class="mt-0 mb-5 h-5/6 w-full">
-          </div>
-          <ul class="flex justify-between items-center ">
-            <div class="my-3">
-               <p class="text-white text-md leading-7 tracking-wider ">Home</p>
-               <li><a href="/welcome" class="text-slate-300 text-md leading-7 tracking-wider ">Home</a></li>
-               <li><a href="/about" class="text-slate-300 text-md leading-7 tracking-wider ">Who we are</a></li>
-               <li><a href="/contact" class="text-slate-300 text-md leading-7 tracking-wider ">Reach out to us </a></li>
-            </div>
-            <div class="">
-               <p  class="text-white text-md leading-7 tracking-wider ">Form</p>
-               <li><a href="" class="text-slate-300 text-md leading-7 tracking-wider ">Create account</a></li>
-               <li><a href="" class="text-slate-300 text-md leading-7 tracking-wider ">Login</a></li>
-               <li><a href="" class="text-slate-300 text-md leading-7 tracking-wider ">Contact us</a></li>
-            </div>
-            <div class="">
-               <p  class="text-white text-md leading-7 tracking-wider ">Others</p>
-               <li><a href="/faq" class="text-slate-300 text-md leading-7 tracking-wider ">FAQ</a></li>
-               <li><a href="" class="text-slate-300 text-md leading-7 tracking-wider ">Blog</a></li>
-               <!-- <li><a href="" class="text-slate-100 text-md leading-7 tracking-wider ">Contact us</a></li> -->
-            </div>
-          </ul>
-          <ul>
-            <div class="">
-               <p  class="text-white text-md leading-7 tracking-wider ">Reach out to us via</p>
-               <li><a href="mailto:pentadcrown@gmail.com" class="text-slate-300 text-md leading-7 tracking-wider ">pentadcrown@gmail.com</a></li>
-               <li><a href="mailto:aderemi@pentadcrown.com.ng" class="text-slate-300 text-md leading-7 tracking-wider ">aderemi@pentadcrown.com.ng</a></li>
-               <li><a href="tel:07012345678" class="text-slate-300 text-md leading-7 tracking-wider ">07012345678</a></li>
-               <li><a href="tel:07060681466" class="text-slate-300 text-md leading-7 tracking-wider ">07060681466</a></li>
-               <!-- <li><a href="" class="text-slate-100 text-md leading-7 tracking-wider ">Contact us</a></li> -->
-            </div>
-          </ul>
-          <p class="text-center mt-4"><a href="tel:07060681466" class="text-center py-2 text-md text-slate-50">&copy;Design and developed by Ope 07060681466</a></p>
-      </div>
-    </div>
+    <div class="bg-black px-2 py-8">
+     <div class="md:w-8/12 md:mx-auto w-screen">
+        <ul class="flex justify-around md:justify-between items-start md:">
+           <div class="my-3">
+             <p class="text-white text-md leading-7 tracking-wider ">Home</p>
+             <li><a href="/welcome" class="text-slate-300 text-md leading-7 tracking-wider ">Home</a></li>
+             <li><a href="/about" class="text-slate-300 text-md leading-7 tracking-wider ">Who we are</a></li>
+             <li><a href="/contact" class="text-slate-300 text-md leading-7 tracking-wider ">Reach out to us </a></li>
+           </div>
+           <div class="my-3">
+             <p  class="text-white text-md leading-7 tracking-wider ">Form</p>
+             <li><a href="/register" class="text-slate-300 text-md leading-7 tracking-wider ">Create account</a></li>
+             <li><a href="/login" class="text-slate-300 text-md leading-7 tracking-wider ">Login</a></li>
+             <li><a href="/contact" class="text-slate-300 text-md leading-7 tracking-wider ">Contact us</a></li>
+           </div>
+           <div class="my-3">
+             <p  class="text-white text-md leading-7 tracking-wider ">Others</p>
+             <li><a href="/faq" class="text-slate-300 text-md leading-7 tracking-wider ">FAQ</a></li>
+             <li><a href="" class="text-slate-300 text-md leading-7 tracking-wider ">Blog</a></li>
+             <!-- <li><a href="" class="text-slate-100 text-md leading-7 tracking-wider ">Contact us</a></li> -->
+           </div>
+           <div class="">
+              <p  class="text-white text-md leading-7 tracking-wider ">Reach out to us via</p>
+              <li><a href="mailto:pentadcrown@gmail.com" class="text-slate-300 text-md leading-7 tracking-wider ">pentadcrown@gmail.com</a></li>
+              <li><a href="mailto:aderemi@pentadcrown.com.ng" class="text-slate-300 text-md leading-7 tracking-wider ">aderemi@pentadcrown.com.ng</a></li>
+              <li><a href="tel:07012345678" class="text-slate-300 text-md leading-7 tracking-wider ">07012345678</a></li>
+              <li><a href="tel:07060681466" class="text-slate-300 text-md leading-7 tracking-wider ">07060681466</a></li>
+              <!-- <li><a href="" class="text-slate-100 text-md leading-7 tracking-wider ">Contact us</a></li> -->
+             </div>
+        </ul>
+        <div class="md:flex md:justify-start md:mt-10">
+           <div class="md:flex md:justify-start">
+             <!-- <img src="./asset/image/logo.jog" alt="Pentadcrown Logo" class="md:w-12 md:h-12 md:mr-2"> -->
+             <h1 class="text-lg text-white tracking-wide leading-9 font-bold">PENTADCROWN</h1>
+           </div>
+           <div class="ml-8">
+             <p class="text-white text-sm"><span class="pr-2 border-r-2 border-white">Terms of use</span><span class="px-2 border-r-2 border-white">Privacy policy</span><span class="px-2 border-r-2 border-white">Trademarks</span><span class="px-2">Licence Agreement</span> </p>
+             <p class="text-center py-2 leading-9 tracking-wider text-md text-slate-400 mb-6">Copyright &copy; 2022, PentadCrown Inc and/or it's subsidiaries. All rights reserved</p>
+           </div>
+        </div>
+        <p class="text-center mt-4"><a href="tel:07060681466" class="text-center py-2 text-md text-slate-50">&copy;Designed and developed by Ope 09073245874</a></p>
+     </div>
+   </div>
 </template>
 
 <script>

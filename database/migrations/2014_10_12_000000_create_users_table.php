@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string("coverletterpath")->nullable();
             $table->string("jobs")->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
+            $table->string('score')->nullable();
             $table->timestamps();
         });
     }

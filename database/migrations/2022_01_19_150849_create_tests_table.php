@@ -15,12 +15,13 @@ class CreateTestsTable extends Migration
     {
         Schema::create('tests', function (Blueprint $table) {
             $table->id();
-            $table->string('question');
+            $table->text('question');
             $table->string('option1');
             $table->string('option2');
             $table->string('option3');
             $table->string('option4');
             $table->string('answer');
+            $table->boolean('imageExists');
             $table->timestamps();
         });
     }

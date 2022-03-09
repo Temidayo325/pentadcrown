@@ -1,4 +1,4 @@
-<template>
+<template class="md:bg-login md:bg-cover md:bg-no-repeat md:w-full">
     <Head title="Log in" />
 
     <div :class="entry" v-if="navigation">
@@ -26,9 +26,9 @@
                    <li>
                       <a href="/about" class="leading-8 text-black py-1 px-2 text-md">Who we are</a>
                    </li>
-                   <!-- <li>
+                  <li>
                       <a href="" class="leading-8 text-black py-1 px-2 text-md">Frequently Asked Questions</a>
-                   </li> -->
+                   </li>
                 </div>
                    <h2 class="flex justify-start items-center mt-5">
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
@@ -46,9 +46,9 @@
                      <li>
                         <a href="/contact" class="leading-8 text-black py-1 px-2 text-md">Contact us</a>
                      </li>
-                     <!-- <li>
+                     <li>
                         <a href="/faq" class="leading-8 text-black py-1 px-2 text-md">Frequently Asked Questions</a>
-                     </li> -->
+                     </li>
                   </div>
                   <h2 class="flex justify-start items-center mt-5">
                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
@@ -68,19 +68,19 @@
            </nav>
         </div>
     </div>
-      <div class="sticky top-0 z-10">
-          <div class="flex justify-between py-3 bg-slate-50 align-items-center px-4">
+      <div class="sticky top-0 z-10 md:hidden">
+          <div class="flex justify-between py-3 bg-slate-50 align-items-center px-4 md:bg-purple-300 md:justify-center">
              <div class="">
                   <h1 class="font-black tracking-normal">PENTADCROWN</h1>
              </div>
-             <div class="" v-on:click="showNavigation()">
+             <div class="md:hidden" v-on:click="showNavigation()">
                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                </svg>
              </div>
           </div>
       </div>
-      <div class="bg-login bg-cover bg-no-repeat w-full h-48 bg-blend-multiply bg-zinc-600 flex justify-center items-center">
+      <div class="bg-login bg-cover bg-no-repeat w-full h-48 md:hidden bg-blend-multiply bg-zinc-600 flex justify-center items-center">
          <!-- <div class="bg-zinc-900 w-full h-full opacity-40 flex justify-center items-center"> -->
             <h1 class="font-bold text-center leading-9 tracking-wider text-2xl text-white italic">Admin</h1>
          <!-- </div> -->
@@ -89,44 +89,49 @@
         <!-- <template #logo>
             <jet-authentication-card-logo />
         </template> -->
+        <div class="md:bg-login md:bg-cover md:bg-no-repeat md:w-full md:h-screen md:flex md:justify-center md:items-center">
+           <div class="md:bg-white shadow-md md:w-96 md:shadow-xl">
+             <jet-validation-errors class="mb-4" />
 
-        <jet-validation-errors class="mb-4" />
+             <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
+                 {{ status }}
+             </div>
+             <form @submit.prevent="submit" class="px-3 border-2 border-slate-300 py-5">
+                 <div class="mb-3">
+                    <h1 class="font-bold text-center leading-9 tracking-wider text-xl md:text-purple-800">Login to your account</h1>
+                 </div>
+                 <div>
+                     <jet-label for="email" value="Email" class="md:text-purple-800"/>
+                     <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus />
+                 </div>
 
-        <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-            {{ status }}
+                 <div class="mt-4">
+                     <jet-label for="password" value="Password" class="md:text-purple-800"/>
+                     <jet-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" />
+                 </div>
+
+                 <div class="block mt-4">
+                     <label class="flex items-center">
+                         <jet-checkbox name="remember" v-model:checked="form.remember" />
+                         <span class="ml-2 text-sm text-gray-600 md:text-purple-800">Remember me</span>
+                     </label>
+                 </div>
+
+                 <div class="flex items-center justify-center mt-4">
+                     <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
+                         Forgot your password?
+                     </Link>
+
+                     <jet-button class="ml-4 bg-purple-800" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                         Log in
+                     </jet-button>
+                 </div>
+             </form>
+           </div>
         </div>
 
-        <form @submit.prevent="submit" class="px-3 border-2 border-slate-300 py-5 shadow-md">
-           <div class="mb-3">
-              <h1 class="font-bold text-center leading-9 tracking-wider text-xl">Login to your account</h1>
-           </div>
-            <div>
-                <jet-label for="email" value="Email" />
-                <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus />
-            </div>
 
-            <div class="mt-4">
-                <jet-label for="password" value="Password" />
-                <jet-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" />
-            </div>
 
-            <div class="block mt-4">
-                <label class="flex items-center">
-                    <jet-checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="ml-2 text-sm text-gray-600">Remember me</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    Forgot your password?
-                </Link>
-
-                <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Log in
-                </jet-button>
-            </div>
-        </form>
     <!-- </jet-authentication-card> -->
     <div class="">
       <div class="bg-black px-2 py-2 border-t-2 border-red-600">

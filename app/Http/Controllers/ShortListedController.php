@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\Shortlisted;
 use App\Models\User;
 use App\Models\Notification;
+use App\Services\Email;
 
 class ShortListedController extends Controller
 {
@@ -93,15 +94,19 @@ class ShortListedController extends Controller
       if ($request->session()->has('admin')) {
          // code...
          $validate = Validator::make($request->all(), [
-            'email' => 'required|email'
+            'email' => 'required|email',
+            'header' => 'required|string',
+            'body' => 'required|string'
          ]);
+
          if ($validate->fails()) {
             return [
                'status' => 0,
                'message' => $validate->error()->first()
             ];
          }
-         // send mail
+         Email::send($request->email, $request->body, $request->header);
+
          return response()->json([
             'status' => 1,
             'message' => "Mail sent successfully"

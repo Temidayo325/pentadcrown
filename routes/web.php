@@ -10,6 +10,7 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\ShortlistedController;
 use App\Http\Controllers\EstablishmentController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\TestController;
 
 use Inertia\Inertia;
 
@@ -39,13 +40,13 @@ Route::get("/contact", [PagesController::class, 'contact']);
 Route::get("/faq", [PagesController::class, 'faq']);
 Route::post("/contact", [EmailController::class, 'sendMail']);
 
-Route::post("/admin", [AdminController::class, 'Login'])->name('admin');
+Route::post("/admin", [AdminController::class, 'Login']);
 //This would be grouped under authorized access only
 Route::get("/iamtheadmin", [AdminController::class, 'Dashboard'])->name('iamtheadmin');
 Route::get("/search", [AdminController::class, 'Search']);
 
 // Routes around UserController
-Route::post("/upload_cv", [UserController::class, 'upload_cv']);
+Route::middleware(['auth:sanctum', 'verified'])->post("/upload_cv", [UserController::class, 'upload_cv']);
 
 // Routes around JobController
 Route::get("/getCategories", [JobController::class, 'getCategories']);
@@ -66,23 +67,35 @@ Route::post("/removeEstablishment", [EstablishmentController::class, 'Destroy'])
 Route::post("/createNotification", [NotificationController::class, 'Create']);
 Route::get("/getNotification", [NotificationController::class, 'Read']);
 Route::post("/removeNotification", [NotificationController::class, 'Destroy']);
+// Routes around TestController
+Route::post("/createTest", [TestController::class, 'store']);
+Route::post("/createTestWithImage", [TestController::class, 'storeImage']);
+Route::get("/getTest", [TestController::class, 'show']);
+Route::post("/removeTest", [TestController::class, 'destroy']);
+Route::middleware(['auth:sanctum', 'verified'])->post("/getTestResult", [TestController::class, 'getTestResult']);
+Route::middleware(['auth:sanctum', 'verified'])->get("/denied", function(){
+   return Inertia::render('Component/DoneTest');
+});
 
-Route::get('/upload', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/upload', function () {
     return Inertia::render('Component/Upload');
 })->name('upload');
 
-Route::get('/jobcategory', function () {
-    return Inertia::render('Component/JobCategory');
+Route::middleware(['auth:sanctum', 'verified'])->get('/jobcategory', function () {
+    return Inertia::render('Component/Job');
 })->name('jobcategory');
 
-Route::get('/aptitude', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/test', [TestController::class, 'StartTest'])->name('test');
+// function () {
+//     return Inertia::render('Component/Test');
+// }
+Route::middleware(['auth:sanctum', 'verified'])->get('/aptitude', function () {
     return Inertia::render('Component/Aptitude');
 })->name('aptitude');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
-
 
 //
 Route::get('/admin', function () {

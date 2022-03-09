@@ -15,6 +15,7 @@ class Test extends Model
       'option2',
       'option3',
       'option4',
-      'answer'
+      'answer',
+      'imageExists'
    ];
 }

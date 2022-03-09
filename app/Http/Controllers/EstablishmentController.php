@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
 use App\Models\Establishment;
 
 class EstablishmentController extends Controller
@@ -62,7 +63,7 @@ class EstablishmentController extends Controller
            'message' => Establishment::where('active', 1)->get()
         ]);
      }else{
-        Redirect::route('admin');
+        return Redirect::route('admin');
      }
   }
 

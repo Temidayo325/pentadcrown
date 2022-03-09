@@ -29,7 +29,8 @@ class User extends Authenticatable
         'password',
         'cvpath',
         'coverletterpath',
-        'jobs'
+        'jobs',
+        'score'
     ];
 
     /**

@@ -25,7 +25,7 @@ class UserController extends Controller
         }
       if ($request->hasFile('image') && $request->file('image')->isValid()) {
          // code...
-         $path = $request->image->store('documents');
+         $path = $request->image->store('public/documents');
          if ($request->type == 'cv') {
             // code...
             if (File::exists(public_path(User::where('email', $request->email)->first()->cvpath))) {
